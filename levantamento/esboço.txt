@@ -1,0 +1,45 @@
+CMS para gestão de conteúdo do CV online
+
+informações
+
+Usuário:
+  - Cargo
+  - Nome
+  - Descrição
+  - Email
+  - cel
+  - Endereço
+  - Data de nascimento
+  - Logotipo (png, jpeg)?
+  - Foto de perfil
+  - Background de perfil
+
+Serviços:
+  - Título
+  - Descrição
+
+Skills:
+  - Titulo
+  - porcentagem de conhecimento
+
+Formação Academica
+  - Nome do curso
+  - Instituição
+  - Status
+  - Data de início
+  - Data de Conclusão
+
+Cursos Livres
+  - Nome do curso
+  - Instituição
+  - Status
+  - Data de início
+  - Data de Conclusão
+
+Experiência Profissional
+  - Cargo
+  - Nome da empresa
+  - Descrição
+  - Data de início
+  - Data de Termino?
+  - Status
