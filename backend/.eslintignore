@@ -1,0 +1,5 @@
+levantamento
+node_modules
+dist
+build
+/*.js
