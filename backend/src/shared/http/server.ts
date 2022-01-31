@@ -5,6 +5,8 @@ import cors from 'cors';
 import routes from './routes';
 import AppError from '@shared/errors/AppError';
 
+import '@shared/typeorm';
+
 const app = express();
 
 app.use(cors());
