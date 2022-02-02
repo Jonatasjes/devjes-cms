@@ -8,9 +8,9 @@ describe('Signup Controller', () => {
       body: {
         last_name: 'any_last_name',
         username: 'any_username',
-        email: 'any_email',
+        email: 'any_email@mail.com',
         password: 'any_password',
-        password_confirmation: 'any_password_confirmation'
+        passwordConfirmation: 'any_password_confirmation'
       }
     }
     const httpResponse = sut.handle(httpRequest)
@@ -25,9 +25,9 @@ describe('Signup Controller', () => {
       body: {
         first_name: 'any_first_name',
         username: 'any_username',
-        email: 'any_email',
+        email: 'any_email@mail.com',
         password: 'any_password',
-        password_confirmation: 'any_password_confirmation'
+        passwordConfirmation: 'any_password_confirmation'
       }
     }
     const httpResponse = sut.handle(httpRequest)
@@ -42,9 +42,9 @@ describe('Signup Controller', () => {
       body: {
         first_name: 'any_first_name',
         last_name: 'any_last_name',
-        email: 'any_email',
+        email: 'any_email@mail.com',
         password: 'any_password',
-        password_confirmation: 'any_password_confirmation'
+        passwordConfirmation: 'any_password_confirmation'
       }
     }
     const httpResponse = sut.handle(httpRequest)
@@ -61,12 +61,29 @@ describe('Signup Controller', () => {
         last_name: 'any_last_name',
         username: 'any_username',
         password: 'any_password',
-        password_confirmation: 'any_password_confirmation'
+        passwordConfirmation: 'any_password_confirmation'
       }
     }
     const httpResponse = sut.handle(httpRequest)
 
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new MissingParameterError('email'))
+  })
+
+  test('Should return 400 if on password is provided', () => {
+    const sut = new SignupController()
+    const httpRequest = {
+      body: {
+        first_name: 'any_first_name',
+        last_name: 'any_last_name',
+        username: 'any_username',
+        email: 'any_email@mail.com',
+        passwordConfirmation: 'any_password_confirmation'
+      }
+    }
+    const httpResponse = sut.handle(httpRequest)
+
+    expect(httpResponse.statusCode).toBe(400)
+    expect(httpResponse.body).toEqual(new MissingParameterError('password'))
   })
 })
