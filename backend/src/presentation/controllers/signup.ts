@@ -13,5 +13,12 @@ export class SignupController {
         body: new Error('Missing param: last_name')
       }
     }
+
+    if (!httpRequest.body.username) {
+      return {
+        statusCode: 400,
+        body: new Error('Missing param: username')
+      }
+    }
   }
 }
