@@ -1,4 +1,3 @@
-import {} from '../../../domain/models/account'
 import {
   AddAccount,
   AddAccountModel,
@@ -278,6 +277,31 @@ describe('Signup Controller', () => {
       username: 'any_username',
       email: 'any_email@mail.com',
       password: 'any_password'
+    })
+  })
+
+  test('Should return 200 if valid data is provided', () => {
+    const { sut } = makeSut()
+    const httpRequest = {
+      body: {
+        first_name: 'valid_first_name',
+        last_name: 'valid_last_name',
+        username: 'valid_username',
+        email: 'valid_email@mail.com',
+        password: 'valid_password',
+        passwordConfirmation: 'valid_password'
+      }
+    }
+    const httpResponse = sut.handle(httpRequest)
+
+    expect(httpResponse.statusCode).toBe(200)
+    expect(httpResponse.body).toEqual({
+      id: 'valid_id',
+      first_name: 'valid_first_name',
+      last_name: 'valid_last_name',
+      username: 'valid_username',
+      email: 'valid_email@mail.com',
+      password: 'valid_password'
     })
   })
 })
