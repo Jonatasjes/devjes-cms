@@ -52,14 +52,18 @@ export class SignUpController implements Controller {
         return badRequest(new InvalidParamError('email'))
       }
 
-      this.addAccount.add({
-        first_name: first_name,
-        last_name: last_name,
-        username: username,
-        email: email,
-        password: password
+      const account = this.addAccount.add({
+        first_name,
+        last_name,
+        username,
+        email,
+        password
       })
-      return badRequest(new MissingParamError('Missing all param'))
+
+      return {
+        statusCode: 200,
+        body: account
+      }
     } catch (error) {
       return serverError()
     }
