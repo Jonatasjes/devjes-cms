@@ -6,6 +6,12 @@ import { Controller } from '../../presentation/protocols'
 import { EmailValidatorAdapter } from '../../utils/email-validator-adapter'
 import { LogControllerDecorator } from '../decorators/log'
 
+class LogErrorRepository implements LogErrorRepository {
+  async log(stack: string): Promise<void> {
+    new Promise(resolve => resolve(stack))
+  }
+}
+
 export const makeSignUpController = (): Controller => {
   const salt = 12
   const emailValidatorAdapter = new EmailValidatorAdapter()
@@ -16,5 +22,6 @@ export const makeSignUpController = (): Controller => {
     emailValidatorAdapter,
     dbAddAccount
   )
-  return new LogControllerDecorator(signUpController)
+  const logErrorRepository = new LogErrorRepository()
+  return new LogControllerDecorator(signUpController, logErrorRepository)
 }
