@@ -9,5 +9,6 @@ module.exports = {
     'space-before-function-paren': 'error'
   },
   'space-before-function-paren': 'off',
-  '@typescript-eslint/space-before-function-paren': ['error']
+  '@typescript-eslint/space-before-function-paren': ['error'],
+  '@typescript-eslint/consistent-type-definitions': 'off'
 }
