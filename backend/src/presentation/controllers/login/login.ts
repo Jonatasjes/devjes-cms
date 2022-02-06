@@ -1,7 +1,12 @@
 import { threadId } from 'worker_threads'
 import { Authentication } from '../../../domain/usecases/authentication'
 import { InvalidParamError, MissingParamError } from '../../errors'
-import { badRequest, ok, serverError } from '../../helpers/http-helper'
+import {
+  badRequest,
+  ok,
+  serverError,
+  unauthorized
+} from '../../helpers/http-helper'
 import { Controller, HttpRequest, HttpResponse } from '../../protocols'
 import { EmailValidator } from '../../protocols/email-validator'
 
@@ -21,9 +26,15 @@ export class LoginController implements Controller {
         }
       }
       const { email, password } = httpRequest.body
+
       const isValid = this.emailValidator.isValid(email)
+
       if (!isValid) return badRequest(new InvalidParamError('email'))
-      await this.authentication.auth(email, password)
+
+      const accessToken = await this.authentication.auth(email, password)
+
+      if (!accessToken) return unauthorized()
+
       return new Promise(resolve => resolve(ok({})))
     } catch (error) {
       return serverError(error)
