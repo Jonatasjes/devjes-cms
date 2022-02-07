@@ -30,8 +30,8 @@ const makeAddAccount = (): AddAccount => {
 
 const makeValidation = (): Validation => {
   class ValidationStub implements Validation {
-    validate(input: any): Error | null {
-      return null
+    validate(input: any): Error | void {
+      return null as unknown as Error
     }
   }
   return new ValidationStub()
