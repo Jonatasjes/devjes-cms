@@ -7,7 +7,7 @@ export const makeSignUpValidation = (): ValidationComposite => {
   for (const field of [
     'first_name',
     'last_name',
-    'usename',
+    'username',
     'email',
     'password',
     'passwordConfirmation'
